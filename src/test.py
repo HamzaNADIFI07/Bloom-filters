@@ -7,7 +7,7 @@ from bloomfilter import BloomFilter
 def random_word ():
     """
     Returns:
-      str: a word with random letters whose length is between 4 and 7.
+      (str): a word with random letters whose length is between 4 and 7.
     """
     letters = [ chr(i) for i in range(ord('a'),ord('z')+1) ] + [ chr(i) for i in range(ord('A'),ord('Z')+1) ]
     length = 4 + random.randint(0,4)

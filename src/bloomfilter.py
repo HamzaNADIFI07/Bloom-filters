@@ -39,7 +39,7 @@ class BloomFilter:
           e (any): The element to be tested
 
         Returns:
-          bool: whether the element has (probably) been added to the Bloom filter
+          (bool): whether the element has (probably) been added to the Bloom filter
         """
         pass
     

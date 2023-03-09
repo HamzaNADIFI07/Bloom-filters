@@ -22,7 +22,7 @@ class HashFunctions:
         Return the number of functions implemented by the object
 
         Returns:
-          int: Number of functions
+          (int): Number of functions
 
         Examples:
           >>> h = HashFunctions(10)
@@ -40,7 +40,7 @@ class HashFunctions:
           s (str): The string to compute the hash on
 
         Returns:
-          int: The sum of the hash value for each character of `s` for the hash function `n_hash`.
+          (int): The sum of the hash value for each character of `s` for the hash function `n_hash`.
 
         Warning: Pre-condition
                  0 ≤ `n_hash` < `self.nb_functions()`
