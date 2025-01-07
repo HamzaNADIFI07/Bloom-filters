@@ -20,7 +20,7 @@ plugins:
       python:
         rendering:
           show_source: yes
-        paths: [src]
+        paths: [.]
 markdown_extensions:
   - admonition
   - pymdownx.arithmatex:
