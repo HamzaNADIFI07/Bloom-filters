@@ -1,6 +1,6 @@
 PROJECT=tp-bloom
 AUTHOR=FIL-ASD
-SOURCES=experience.py marker.py sorting.py
+SOURCES=bloomfilter.py hash_functions.py test.py
 FULL_SOURCES=$(addprefix src/, $(SOURCES))
 
 define execute-command
