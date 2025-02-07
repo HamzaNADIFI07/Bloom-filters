@@ -45,7 +45,17 @@ class HashFunctions:
         Warning: Pre-condition
                  0 ≤ `n_hash` < `self.nb_functions()`
         '''
-        pass
+        res = 0
+        // On parcours notre chaine s, et pour chaque caractère de cette chaine on récupère sa valeur ASCII
+        for c in s:
+            c_ascii = ord(c)
+            // On fait la somme des valeurs de la fonction de hachage numéro n_hash des caractères de s
+            res += self.random_tab[n_hash][c_ascii]
+        return res
+
+
+            
+
     
     def __getitem__(self, tup):
         return self.hash(tup[1], tup[0])

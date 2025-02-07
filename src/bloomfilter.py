@@ -20,7 +20,10 @@ class BloomFilter:
           n (int): the log of the size of the filter (the filter will be of size $2^n$)
           hashes (HashFunctions): the hash functions
         """
-        pass
+        self.n = n
+        self.hashes = hashes
+        self.size=2**n
+
 
     def add (self, e):
         """
