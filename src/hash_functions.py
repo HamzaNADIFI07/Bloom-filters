@@ -46,11 +46,15 @@ class HashFunctions:
                  0 ≤ `n_hash` < `self.nb_functions()`
         '''
         res = 0
-        // On parcours notre chaine s, et pour chaque caractère de cette chaine on récupère sa valeur ASCII
+        # On parcours notre chaine s, et pour chaque caractère de cette chaine on récupère sa valeur ASCII.
         for c in s:
             c_ascii = ord(c)
-            // On fait la somme des valeurs de la fonction de hachage numéro n_hash des caractères de s
-            res += self.random_tab[n_hash][c_ascii]
+            # Condition pour vérifier que le caractère traité fait partie des 128 premiers caractères de la table ASCII.
+            if c_ascii < 128:
+              # On fait la somme des valeurs de la fonction de hachage numéro n_hash des caractères de s.
+              res += self.random_tab[n_hash][c_ascii]
+            else:
+              raise ValueError("Caractère invalide")
         return res
 
 
