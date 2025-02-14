@@ -33,7 +33,10 @@ class BloomFilter:
         Args:
           e (any): The element to be added
         """
-        pass
+        for i in range (self.hashes.nb_functions()):
+            a=self.hashes.hash(i,e) % self.size
+            self.table[a]=True
+
 
     def contains (self, e):
         """
