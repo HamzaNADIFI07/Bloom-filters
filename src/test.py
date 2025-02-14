@@ -17,13 +17,14 @@ def random_word ():
     return str
 
 if __name__ == "__main__":
-    hashes = HashFunctions(8)
-    bf = BloomFilter(16, hashes)
-    w = random_word()
-    bf.add("timoleon")
-    if bf.contains("timoleon"):
-        print("%s est present" % ("timoleon"))
-    if bf.contains(w):
-        print("%s est present" % (w))
+    for i in range(10,21):
+        hashes = HashFunctions(2**i)
+        bf = BloomFilter(16, hashes)
+        w = random_word()
+        bf.add("timoleon")
+
+        if bf.contains(w):
+            print("%s est present avec i=%s" % (w , i))
+            break
 
     
