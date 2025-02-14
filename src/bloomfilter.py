@@ -20,9 +20,10 @@ class BloomFilter:
           n (int): the log of the size of the filter (the filter will be of size $2^n$)
           hashes (HashFunctions): the hash functions
         """
-        self.n = n
-        self.hashes = hashes
-        self.size=2**n
+        self.n = n # Le log de la taille du filtre
+        self.hashes = hashes # La fonction de hachage
+        self.size=2**n # La taille du filtre `2^n`
+        self.table = [False for i in range(self.size)] # On initialise tous les cases de la table à False
 
 
     def add (self, e):
