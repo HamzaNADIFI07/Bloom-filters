@@ -48,7 +48,12 @@ class BloomFilter:
         Returns:
           (bool): whether the element has (probably) been added to the Bloom filter
         """
-        pass
+        for i in range(self.hashes.nb_functions()):
+          res = self.hashes.hash(i, e) % self.size
+          if not self.table[res]:
+            return False
+        return True
+
     
     def __contains__(self, e):
         return self.contains(e)
