@@ -282,6 +282,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#q3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3:
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -424,6 +433,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#q3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q3:
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -465,7 +483,7 @@ exemple pour répondre à la question 3 de la section 2.4 vous indiquerez :</p>
 <p>Et on a eu le résultat suivant:</p>
 <pre><code class="language-bash">timoleon est present
 </code></pre>
-<p>Après avoir ajouter cette ligne aussi au programme de test du fichier <code>test.py</code>, et qui permet de rajouter le mot aléatoire génerer par la fonction <code>random_word()</code>, pour pouvoir tester son présence dans le filtre :</p>
+<p>Après avoir ajouter cette ligne aussi au programme de test du fichier <code>test.py</code>, et qui permet de rajouter le mot aléatoire génerer par la fonction <code>random_word()</code>, pour pouvoir tester sa présence dans le filtre :</p>
 <pre><code class="language-python">if __name__ == &quot;__main__&quot;:
     hashes = HashFunctions(8)
     bf = BloomFilter(16, hashes)
@@ -493,6 +511,28 @@ IQufLUs est present
 <p>La fonction <code>contains()</code> permet bien de vérifier la présence d'un élement dans le filtre.</p>
 </li>
 </ul>
+<h4 id="q3">Q3:</h4>
+<p>Pour trouver une taille du filtre pour laquelle un mot tiré au hasard apparaît présent, ce qui veut dire qu'on a un faux positif, après avoir tester plusieurs valeurs de <strong>n</strong>, je n'ai réussi d'obtenir aucun <strong>faux positif</strong>, donc j'ai décider de modifier un peu le code de test du fichier <code>test.py</code> pour automatiser cette recherche de la taille du filtre avec le code suivant:</p>
+<pre><code class="language-python">if __name__ == &quot;__main__&quot;:
+    for i in range(21):
+        hashes = HashFunctions(2**i)
+        bf = BloomFilter(16, hashes)
+        w = random_word()
+        bf.add(&quot;timoleon&quot;)
+
+        if bf.contains(w):
+            print(&quot;%s est present avec i=%s&quot; % (w , i))
+            break
+</code></pre>
+<p>Avec ce code qui permet de tester les <strong>21</strong> premiers <strong>(de 0 à 20)</strong> taille du filtre, j'ai pu obtenir ce résultat:</p>
+<pre><code class="language-bash">src % python3 test.py
+dheUCve est present avec i=20
+</code></pre>
+<p>Après un deuxième teste, j'ai pu obtenir ce résultat:</p>
+<pre><code class="language-bash">src % python3 test.py
+DkaINUva est present avec i=20
+</code></pre>
+<p>Donc taille du filtre pour laquelle un mot tiré au hasard apparaît présent, ce qui veut dire qu'on a un faux positif est <strong><code>2^20</code></strong> donc <strong><code>n=20</code></strong>.</p>
 
 
 

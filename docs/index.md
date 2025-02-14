@@ -51,4 +51,31 @@ Et qui permet de conclure que:
 
 - La fonction `contains()` permet bien de vérifier la présence d'un élement dans le filtre.
 
+#### Q3:
+
+Pour trouver une taille du filtre pour laquelle un mot tiré au hasard apparaît présent, ce qui veut dire qu'on a un faux positif, après avoir tester plusieurs valeurs de **n**, je n'ai réussi d'obtenir aucun **faux positif**, donc j'ai décider de modifier un peu le code de test du fichier `test.py` pour automatiser cette recherche de la taille du filtre avec le code suivant:
+
+```python
+if __name__ == "__main__":
+    for i in range(21):
+        hashes = HashFunctions(2**i)
+        bf = BloomFilter(16, hashes)
+        w = random_word()
+        bf.add("timoleon")
+
+        if bf.contains(w):
+            print("%s est present avec i=%s" % (w , i))
+            break
+```
+Avec ce code qui permet de tester les **21** premiers **(de 0 à 20)** taille du filtre, j'ai pu obtenir ce résultat:
+```bash
+src % python3 test.py
+dheUCve est present avec i=20
+```
+Après un deuxième teste, j'ai pu obtenir ce résultat:
+```bash
+src % python3 test.py
+DkaINUva est present avec i=20
+```
+Donc taille du filtre pour laquelle un mot tiré au hasard apparaît présent, ce qui veut dire qu'on a un faux positif est **`2^20`** donc **`n=20`**.
 
