@@ -1,0 +1,33 @@
+site_name: "Module tp-bloom"
+site_author: "FIL-ASD"
+copyright: "2015-2022, FIL-ASD, Univ. Lille"
+theme:
+  name: "material"
+  logo: ulille.png
+  palette:
+    primary: purple
+
+nav:
+  - Rendu: index.md
+  - Fonctions de hachage: hash.md
+  - Filtre de bloom : bloom.md
+  - Test: test.md
+  
+plugins:
+- search
+- mkdocstrings:
+    handlers:
+      python:
+        rendering:
+          show_source: yes
+        paths: [.]
+markdown_extensions:
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://www.fil.univ-lille.fr/~salson/portail/mathjax_conf.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  

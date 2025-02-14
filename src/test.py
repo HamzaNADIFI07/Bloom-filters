@@ -21,7 +21,6 @@ if __name__ == "__main__":
     bf = BloomFilter(16, hashes)
     w = random_word()
     bf.add("timoleon")
-    bf.add(w)
     if bf.contains("timoleon"):
         print("%s est present" % ("timoleon"))
     if bf.contains(w):
