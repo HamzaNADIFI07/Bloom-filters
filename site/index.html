@@ -296,6 +296,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#lanalyse-des-faux-positifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'analyse des faux-positifs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="L'analyse des faux-positifs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q4:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -447,6 +471,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#lanalyse-des-faux-positifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'analyse des faux-positifs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="L'analyse des faux-positifs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q4:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -533,6 +581,45 @@ dheUCve est present avec i=20
 DkaINUva est present avec i=20
 </code></pre>
 <p>Donc taille du filtre pour laquelle un mot tiré au hasard apparaît présent, ce qui veut dire qu'on a un faux positif est <strong><code>2^20</code></strong> donc <strong><code>n=20</code></strong>.</p>
+<h3 id="lanalyse-des-faux-positifs">L'analyse des faux-positifs</h3>
+<h4 id="q4">Q4:</h4>
+<p>Après avoir implémenter l'algorithme de test de l'influence du <strong>nombre de fonctions de hachage</strong> et de la <strong>taille du filtre</strong> sur le nombre de faux positifs, et qui permet d'enregistrer les résultats dans un fichier nommé <code>res.txt</code>, j'ai pu utiliser le programme Gnuplot dans le fichier <code>tp-bloom.plt</code> pour tracer la courbe des résultats enregistré dans le fichier <code>res.txt</code>, j'ai eu le graphe suivant:</p>
+<p><img alt="GRAPHE" src="../src/tp4.png" /></p>
+<p>En analysant visuelement ce graphe, on peut constater trois partis du graphe distinctes:</p>
+<ul>
+<li>
+<p>Quand la taille du filtre est petite donc <code>n = 10 à 11</code>:</p>
+<ul>
+<li>Le <strong>pourcentage de faux positifs</strong> est très élevés pour toutes les valeurs de <strong>nombres de fonctions de hachage</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Quand la taille du filtre est moyenne donc <code>n = 12 à 14</code>:</p>
+<ul>
+<li>Le <strong>pourcentage de faux positifs</strong> commence à diminue pour toutes les valeurs de <strong>nombres de fonctions de hachage</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Quand la taille du filtre est grande donc <code>n &gt; 14</code>:</p>
+<ul>
+<li>Le <strong>pourcentage de faux positifs</strong> commence à s'annuler pour toutes les valeurs de <strong>nombres de fonctions de hachage</strong>.</li>
+</ul>
+</li>
+</ul>
+<p>C'est résultats obtenus sont du au faite que si on a un filtre trop petit cela entraîne beaucoup de <strong>faux positifs</strong>, même avec unn grand nombre de <strong>fonctions de hachage</strong>, et que si on a un grand filtre cela fait diminuer automatiquement le nombre de <strong>faux positifs</strong>, ce qui rends le nombres <strong>fonctions de hachage</strong> moins important vu que si on le fait varié sur un filtre de grande taille les résultats seront les mêmes (Un pourcentage de de faux positifs proche du 0%).</p>
+<p>En ce qui concerne le bon choix du nombre de <strong>fonctions de hachage</strong> en fonction de la taille du <strong>filtre de Bloom</strong>:</p>
+<ul>
+<li>
+<p>Si la taille du <strong>filtre de Bloom</strong> est petite, que ce soit nombre de <strong>fonctions de hachage</strong> est grand ou petit le <strong>pourcentage de faux positifs</strong> sera grand.</p>
+</li>
+<li>
+<p>Si la taille du <strong>filtre de Bloom</strong> est trop grande, que ce soit nombre de <strong>fonctions de hachage</strong> est grand ou petit le <strong>pourcentage de faux positifs</strong> sera très petit mais le problème de cette approche c'est que ça va entrainer un grand espace mémoire ce qui n'est pas optimale même si ça réduit le <strong>pourcentage de faux positifs</strong>.</p>
+</li>
+<li>
+<p>Si la taille du <strong>filtre de Bloom</strong> est compris entre <code>2^13</code> et <code>2^14</code>, et que le nombre de <strong>fonctions de hachage</strong> est compris entre 3 et 5, cela représente la meilleur combinaison de la taille du <strong>filtre de Bloom</strong> et du nombre de <strong>fonctions de hachage</strong>.
+Et ce qui permettra d'avoir une taille du <strong>filtre de Bloom</strong> pas trop grande pour rien et un nombre de <strong>fonctions de hachage</strong> non plus excessive pour limiter grande consommation mémoire et éviter un temps de calcul plus élevé.</p>
+</li>
+</ul>
 
 
 

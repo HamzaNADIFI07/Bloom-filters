@@ -79,3 +79,35 @@ DkaINUva est present avec i=20
 ```
 Donc taille du filtre pour laquelle un mot tiré au hasard apparaît présent, ce qui veut dire qu'on a un faux positif est **`2^20`** donc **`n=20`**.
 
+### L'analyse des faux-positifs
+
+#### Q4:
+
+Après avoir implémenter l'algorithme de test de l'influence du **nombre de fonctions de hachage** et de la **taille du filtre** sur le nombre de faux positifs, et qui permet d'enregistrer les résultats dans un fichier nommé `res.txt`, j'ai pu utiliser le programme Gnuplot dans le fichier `tp-bloom.plt` pour tracer la courbe des résultats enregistré dans le fichier `res.txt`, j'ai eu le graphe suivant:
+
+![GRAPHE](../src/tp4.png)
+
+En analysant visuelement ce graphe, on peut constater trois partis du graphe distinctes:
+
+- Quand la taille du filtre est petite donc `n = 10 à 11`:
+
+    - Le **pourcentage de faux positifs** est très élevés pour toutes les valeurs de **nombres de fonctions de hachage**.
+
+- Quand la taille du filtre est moyenne donc `n = 12 à 14`:
+
+    - Le **pourcentage de faux positifs** commence à diminue pour toutes les valeurs de **nombres de fonctions de hachage**.
+
+- Quand la taille du filtre est grande donc `n > 14`:
+
+    - Le **pourcentage de faux positifs** commence à s'annuler pour toutes les valeurs de **nombres de fonctions de hachage**.
+
+C'est résultats obtenus sont du au faite que si on a un filtre trop petit cela entraîne beaucoup de **faux positifs**, même avec unn grand nombre de **fonctions de hachage**, et que si on a un grand filtre cela fait diminuer automatiquement le nombre de **faux positifs**, ce qui rends le nombres **fonctions de hachage** moins important vu que si on le fait varié sur un filtre de grande taille les résultats seront les mêmes (Un pourcentage de de faux positifs proche du 0%).
+
+En ce qui concerne le bon choix du nombre de **fonctions de hachage** en fonction de la taille du **filtre de Bloom**:
+
+- Si la taille du **filtre de Bloom** est petite, que ce soit nombre de **fonctions de hachage** est grand ou petit le **pourcentage de faux positifs** sera grand.
+
+- Si la taille du **filtre de Bloom** est trop grande, que ce soit nombre de **fonctions de hachage** est grand ou petit le **pourcentage de faux positifs** sera très petit mais le problème de cette approche c'est que ça va entrainer un grand espace mémoire ce qui n'est pas optimale même si ça réduit le **pourcentage de faux positifs**.
+
+- Si la taille du **filtre de Bloom** est compris entre `2^13` et `2^14`, et que le nombre de **fonctions de hachage** est compris entre 3 et 5, cela représente la meilleur combinaison de la taille du **filtre de Bloom** et du nombre de **fonctions de hachage**.
+Et ce qui permettra d'avoir une taille du **filtre de Bloom** pas trop grande pour rien et un nombre de **fonctions de hachage** non plus excessive pour limiter grande consommation mémoire et éviter un temps de calcul plus élevé.
